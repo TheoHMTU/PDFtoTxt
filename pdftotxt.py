@@ -1,9 +1,13 @@
+# Creator: Théo Holzhausen
+
+
 import pdfreader, sys, os
 from pdfreader import PDFDocument, SimplePDFViewer
 
 if len(sys.argv) < 2:
     print("No files selected to convert! Exiting program...")
 
+# Extracts an individual page and adds it to the given output file
 def extractPage(pageNum, viewer, outF):
     try:
         viewer.navigate(pageNum)
