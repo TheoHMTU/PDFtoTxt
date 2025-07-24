@@ -1,5 +1,5 @@
 # PDFtoTxt
-A simple command-line program to extract text from PDF files and create text files
+A simple command-line program to extract text from PDF files and create text files.
 
 
 **TO USE**
