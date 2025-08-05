@@ -4,10 +4,14 @@
 import pdfreader, sys, os
 from pdfreader import PDFDocument, SimplePDFViewer
 
+# If there are no command line arguments, exit program
 if len(sys.argv) < 2:
     print("No files selected to convert! Exiting program...")
+    sys.exit()
 
 # Extracts an individual page and adds it to the given output file
+# INPUT: pageNum, page number; viewer, a SimplePDFViewer viewer object; outF, the output file
+# OUTPUT: Added text to the output file and 
 def extractPage(pageNum, viewer, outF):
     try:
         viewer.navigate(pageNum)
@@ -23,6 +27,8 @@ def extractPage(pageNum, viewer, outF):
 # INPUT: command-line number
 # OUTPUT: A new txt file of the same name as the PDF file
 def convertFile(num):
+
+    # Checks that the given file in the command line can be opened
     if os.path.isfile(sys.argv[num]) != True:
         print(sys.argv[num] + " could not be opened!")
         return None
@@ -32,10 +38,10 @@ def convertFile(num):
     inF = open(sys.argv[num], "rb")
     outF = open(filename + ".txt", "w")
     viewer = SimplePDFViewer(inF)
-    # viewer = SimplePDFViewer(inF)
     x = 1
     ret = ""
     
+    # Loops through each page and adds the text to the output file
     while ret != "No page":
         ret = extractPage(x, viewer, outF)
         x += 1
